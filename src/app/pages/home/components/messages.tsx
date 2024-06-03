@@ -9,7 +9,7 @@ const Messages = async () => {
     const user = await auth()
 
     return (
-        <aside className="fixed top-[72px] right-0 bottom-0 w-80 bg-white dark:bg-gray-800 border-r p-6 overflow-y-auto">
+        <aside className="fixed top-[92px] right-5 bottom-5 w-80 bg-white dark:bg-gray-800 rounded-xl p-6 overflow-y-auto">
             <h2 className="text-lg font-medium mb-4">Messages</h2>
             <div className="space-y-4">
                 <div className="flex items-center gap-3">

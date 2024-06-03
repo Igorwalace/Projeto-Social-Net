@@ -9,7 +9,7 @@ const Posts = async () => {
     const user = await auth()
 
     return (
-        <main className="flex-1 bg-gray-100 dark:bg-gray-900 p-6 md:p-10 mr-80">
+        <main className="flex-1 bg-gray-100 dark:bg-gray-900 px-6 pb-6 md:px-10 md:pb-10 pt-2 mr-80">
             <div className="grid gap-6">
                 <div className="bg-white dark:bg-gray-800 rounded-lg p-4 md:p-6">
                     <div className="flex items-center gap-3">
