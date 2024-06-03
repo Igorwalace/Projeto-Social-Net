@@ -1,7 +1,7 @@
 import React from 'react'
-import Sign_Up from './pages/componens-login/page'
 
 //pages
+import Sign_Up from './pages/componens-login/page-login'
 
 const Page = () => {
   return (

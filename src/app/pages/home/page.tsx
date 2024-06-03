@@ -1,8 +1,11 @@
+//next/react
 import React from 'react'
-import Button_Logout from '../componentes/button-logout'
 import { auth } from '@/services/auth'
 import { redirect } from 'next/navigation'
 import Image from 'next/image'
+
+//pages
+import Button_Logout from '../componentes/button-logout'
 
 const Home = async () => {
 
@@ -20,7 +23,7 @@ const Home = async () => {
             <h1>{session.user.name}</h1>
             <h1>{session.user.email}</h1>
             <Image
-              className='max-w-[200px] max-h-[200px]'
+              className='max-w-[200px] max-h-[200px] rounded-xl'
               quality={100}
               src={session?.user?.image}
               alt={session?.user?.name}

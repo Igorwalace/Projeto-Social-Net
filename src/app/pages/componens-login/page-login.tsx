@@ -1,4 +1,4 @@
-import Link from 'next/link'
+// react
 import React from 'react'
 import { redirect } from 'next/navigation'
 
@@ -15,8 +15,8 @@ const Sign_Up = async () => {
 
     return (
         <>
-            <div className="flex items-center justify-center min-h-[80vh] md:h-screen bg-gray-100 dark:bg-gray-900">
-                <div className="md:w-full w-[90%] h-5/6 max-w-md p-6 bg-white rounded-xl shadow-md dark:bg-gray-800 flex items-center justify-center">
+            <div className="flex items-center justify-center h-screen bg-gray-200 dark:bg-gray-900">
+                <div className="md:w-full w-[90%] md:h-5/6 h-4/6 max-w-md p-6 bg-white rounded-xl shadow-md dark:bg-gray-800 flex items-center justify-center">
                     <div className="space-y-8">
                         <div className="text-center">
                             <h1 className="text-2xl font-extrabold">Welcome!</h1>
