@@ -10,10 +10,14 @@ const Create_User = () => {
   const [userName, setUserName] = useState('')
   const [loading, setLoading] = useState(false)
 
-  const handleSubmit = async (e:any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault()
     setLoading(true)
-    await createAccount(userName)
+    const res = await createAccount(userName)
+    if(res == 'Exist') {
+      setLoading(false)
+      return
+    }
     setLoading(false)
     router.push('/')
   }
@@ -23,7 +27,7 @@ const Create_User = () => {
       <main>
         <h1>Crie seu user name</h1>
         <form onSubmit={handleSubmit} >
-          <input type="text" className='border-2 border-blue-900' onChange={(e)=>setUserName(e.target.value)} />
+          <input type="text" className='border-2 border-blue-900' onChange={(e) => setUserName(e.target.value)} />
           <button type="submit">Enviar</button>
         </form>
       </main>
