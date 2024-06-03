@@ -1,7 +1,6 @@
 //next/react
 import React from 'react'
 import { auth } from '@/services/auth'
-import { redirect } from 'next/navigation'
 import Image from 'next/image'
 
 //pages
@@ -9,8 +8,8 @@ import Button_Logout from '../componentes/button-logout'
 import Link from 'next/link'
 
 const Home = async () => {
+
   const session: any = await auth()
-  if (!session?.user) return redirect('/')
 
   return (
     <div className='flex items-center justify-center gap-2 flex-col' >

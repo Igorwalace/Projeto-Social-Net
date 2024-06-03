@@ -1,18 +1,10 @@
 // react
 import React from 'react'
-import { redirect } from 'next/navigation'
 
 //pages
 import Button_Login from '../componentes/button-login'
 
-//sessions
-import { auth } from '@/services/auth'
-
-const Sign_Up = async () => {
-
-    const session = await auth()
-    if (session?.user) return redirect('/pages/home')
-
+const Sign_Up = () => {
     return (
         <>
             <div className="flex items-center justify-center h-screen bg-gray-200 dark:bg-gray-900">
