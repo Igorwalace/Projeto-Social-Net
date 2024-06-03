@@ -1,0 +1,38 @@
+import Link from 'next/link'
+import React from 'react'
+import { redirect } from 'next/navigation'
+
+//pages
+import Button_Login from './button-login'
+
+//sessions
+import { auth } from '@/services/auth'
+
+const Sign_Up = async () => {
+
+    const session = await auth()
+    if (session?.user) return redirect('/pages/home')
+
+    return (
+        <>
+            <div className="flex items-center justify-center min-h-[80vh] md:h-screen bg-gray-100 dark:bg-gray-900">
+                <div className="md:w-full w-[90%] h-5/6 max-w-md p-6 bg-white rounded-xl shadow-md dark:bg-gray-800 flex items-center justify-center">
+                    <div className="space-y-8">
+                        <div className="text-center">
+                            <h1 className="text-2xl font-extrabold">Welcome!</h1>
+                            <p className="text-gray-500 dark:text-gray-400 text-base">Sign in to your account using Google.</p>
+                        </div>
+                        <Button_Login />
+                        <div className="text-center">
+                            <p className="text-sm text-gray-500 dark:text-gray-400">
+                                {`Sign in even if you don't have an account`}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
+    )
+}
+
+export default Sign_Up 
