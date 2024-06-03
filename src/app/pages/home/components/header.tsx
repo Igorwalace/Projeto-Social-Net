@@ -24,10 +24,10 @@ const Header = () => {
                         </Link>
                     </div>
                     <nav className='flex items-center justify-center gap-3' >
-                        <div>
+                        <div className='hidden md:block' >
                             <Button variant='ghost' >Messages</Button>
                         </div>
-                        <div>
+                        <div className='hidden md:block' >
                             <Button variant='ghost' >Create Post</Button>
                         </div>
                         <AvatarFunctions />
