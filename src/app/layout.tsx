@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 
 //css
 import "./globals.css";
 import "./loading.css"
 
-const inter = Inter({ subsets: ["latin"] });
+//fonts
+import { poppins } from "./fonts/font";
 
 export const metadata: Metadata = {
   title: "Social Net",
@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className}`}>{children}</body>
+      <body className={`${poppins.className}`}>{children}</body>
     </html>
   );
 }
