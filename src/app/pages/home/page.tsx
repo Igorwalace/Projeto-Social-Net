@@ -6,10 +6,10 @@ import Image from 'next/image'
 
 //pages
 import Button_Logout from '../componentes/button-logout'
+import Link from 'next/link'
 
 const Home = async () => {
-
-  const session:any = await auth()
+  const session: any = await auth()
   if (!session?.user) return redirect('/')
 
   return (
@@ -22,6 +22,7 @@ const Home = async () => {
           <div className="border-2 border-blue-900 p-2 rounded-xl text-center space-y-3">
             <h1>{session.user.name}</h1>
             <h1>{session.user.email}</h1>
+            <h1>{session?.user?.userName}</h1>
             <Image
               className='max-w-[200px] max-h-[200px] rounded-xl'
               quality={100}
@@ -33,6 +34,7 @@ const Home = async () => {
           </div>
         </>
       }
+      <Link href='/pages/createUser' >Criar User</Link>
     </div>
   )
 }
