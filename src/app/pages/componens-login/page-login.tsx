@@ -3,7 +3,7 @@ import React from 'react'
 import { redirect } from 'next/navigation'
 
 //pages
-import Button_Login from './button-login'
+import Button_Login from '../componentes/button-login'
 
 //sessions
 import { auth } from '@/services/auth'
@@ -15,7 +15,7 @@ const Sign_Up = async () => {
 
     return (
         <>
-            <div className="flex items-center justify-center h-full bg-gray-200 dark:bg-gray-900">
+            <div className="flex items-center justify-center h-screen bg-gray-200 dark:bg-gray-900">
                 <div className="md:w-full w-[90%] md:h-5/6 h-4/6 max-w-md p-6 bg-white rounded-xl shadow-md dark:bg-gray-800 flex items-center justify-center">
                     <div className="space-y-8">
                         <div className="text-center">

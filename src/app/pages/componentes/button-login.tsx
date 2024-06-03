@@ -1,19 +1,19 @@
 'use client'
 
 //react/next
-import { signOut } from 'next-auth/react'
+import { signIn } from 'next-auth/react'
 import React, { useState } from 'react'
 
 //pages
 import Loading from './loading'
 
-const Button_Logout = () => {
+const Button_Login = () => {
     const [loading, setLoading] = useState<boolean>(false)
 
     const handleLogin = async () => {
         setLoading(true)
         try {
-            await signOut()
+            await signIn()
         } catch (error) {
             console.log(error)
         } finally {
@@ -26,7 +26,7 @@ const Button_Logout = () => {
             <button onClick={handleLogin}
                 className="w-full px-4 py-2 font-medium text-white bg-[var(--main)] rounded-md hover:scale-95 duration-200 dark:bg-blue-600 dark:hover:bg-blue-700"
             >
-                Logout
+                Sign In with Google
             </button>
             {
                 loading && <Loading />
@@ -35,4 +35,4 @@ const Button_Logout = () => {
     )
 }
 
-export default Button_Logout
+export default Button_Login
