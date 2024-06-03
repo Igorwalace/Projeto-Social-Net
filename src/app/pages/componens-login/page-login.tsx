@@ -7,8 +7,8 @@ import Button_Login from '../componentes/button-login'
 const Sign_Up = () => {
     return (
         <>
-            <div className="flex items-center justify-center h-screen bg-gray-200 dark:bg-gray-900">
-                <div className="md:w-full w-[90%] md:h-5/6 h-4/6 max-w-md p-6 bg-white rounded-xl shadow-md dark:bg-gray-800 flex items-center justify-center">
+            <div className="flex items-center justify-center md:pt-0 pt-10 md:h-screen md:bg-gray-200 dark:bg-gray-900">
+                <div className="md:w-full w-[90%] md:h-5/6 h-[500px] max-w-md p-6 bg-white rounded-xl shadow-md dark:bg-gray-800 flex items-center justify-center">
                     <div className="space-y-8">
                         <div className="text-center">
                             <h1 className="text-2xl font-extrabold">Welcome!</h1>
