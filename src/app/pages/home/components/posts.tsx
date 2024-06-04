@@ -9,23 +9,34 @@ import Image from 'next/image'
 const Posts = async () => {
 
     const user = await auth()
-    const posts = await prisma.post.findMany()
+    const posts = await prisma.post.findMany({
+        include: {
+            author: {
+                select: {
+                    name: true,
+                    email: true,
+                    image: true,
+                    userName: true
+                }
+            }
+        }
+    })
 
     return (
-        <main className="flex-1 bg-gray-100 dark:bg-gray-900 md:px-10 md:pb-10 pt-2 md:mr-80">
+        <main className="flex bg-gray-100 dark:bg-gray-900 md:mr-96 md:max-w-2xl mx-auto">
             <div className="grid gap-6">
                 {
                     posts.map((post) => (
-                        <div className="bg-white dark:bg-gray-800 rounded-lg p-4 md:p-6" key={post.id} >
+                        <div className="bg-white dark:bg-gray-800 rounded-xl" key={post.id} >
                             <div className="flex items-center gap-3">
                                 <Avatar className="w-10 h-10">
-                                    <AvatarImage src={user?.user?.image || ''} />
+                                    <AvatarImage src={post.author.image || ''} />
                                 </Avatar>
                                 <div className="flex-1">
-                                    <div className="font-medium">Jared Palmer</div>
+                                    <div className="font-medium">{post.author.userName}</div>
                                     <div className="text-sm text-gray-500 dark:text-gray-400">
                                         {`${post.createdAt.getDate()}/${post.createdAt.getMonth()}/${post.createdAt.getFullYear()}`}
-                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div className="flex justify-center items-center gap-3">
