@@ -24,43 +24,46 @@ const Posts = async () => {
     })
 
     return (
-        <main className="flex bg-white rounded-xl dark:bg-gray-900 md:px-10 md:pb-10 md:pt-5 md:mr-96 py-5 px-5 md:max-w-2xl mx-auto ">
-            <div className="grid gap-6">
-                {
-                    posts.map((post) => (
-                        <>
-                        <div className=" dark:bg-gray-800 rounded-xl" key={post.id} >
-                            <div className="flex items-center gap-3">
-                                <Avatar className="w-10 h-10">
-                                    <AvatarImage src={post.author.image || ''} />
-                                </Avatar>
-                                <div className="flex-1">
-                                    <div className="font-medium">{post.author.userName}</div>
-                                    <div className="text-sm text-gray-500 dark:text-gray-400">
-                                        {`${post.createdAt.getDate()}/${post.createdAt.getMonth()}/${post.createdAt.getFullYear()}`}
-                                    </div>
+        <main className="flex flex-col items-center justify-center gap-5 bg-slate-100 rounded-xl md:px-10 py-5">
+            {
+                posts.map((post) => (
+                    <div className='space-y-4' key={post.id} >
+                        <div className="flex items-center gap-3 px-4">
+                            <Avatar className="w-10 h-10">
+                                <AvatarImage src={post.author.image || ''} />
+                            </Avatar>
+                            <div className="flex-1">
+                                <div className="font-medium">
+                                    <h1 className="md:text-base text-sm font-extrabold">
+                                        {post.author.userName}
+                                    </h1>
                                 </div>
-                            </div>
-                            <div className="flex justify-center items-center gap-3">
-                                <div className="mt-4 text-gray-700 dark:text-gray-300 flex-col flex justify-center items-center gap-3">
-                                    <div>
-                                        <Image
-                                            className='w-[100%] h-[500px]'
-                                            src={post.image}
-                                            alt={post.title}
-                                            width={500}
-                                            height={500}
-                                        />
-                                    </div>
-                                    <p className='text-justify' >{post.title}</p>
+                                <div className="text-sm text-gray-500 dark:text-gray-400">
+                                    <p className='md:text-sm text-xs' >{`${post.createdAt.getDate()}/${post.createdAt.getMonth()}/${post.createdAt.getFullYear()}`}</p>
                                 </div>
                             </div>
                         </div>
-                        <Separator  />
-                        </>
-                    ))
-                }
-            </div>
+                        <div className='md:[500px] w-full md:h-auto md:max-h-[468px] max-h-[520px] overflow-hidden'>
+                            <Image
+                                src={post.image || ''}
+                                alt='Imagens'
+                                width={500}
+                                height={500}
+                                objectFit='cover'
+                            />
+                        </div>
+                        {
+                            post.title.length > 0 &&
+                            <div className='text-sm md:max-w-[500px] px-2 md:px-0 space-x-2' >
+                                <p className='font-extrabold text-black' >{post.author.userName}
+                                    <span className='font-normal ml-2' >{post.title}</span>
+                                </p>
+                            </div>
+                        }
+                        <Separator />
+                    </div>
+                ))
+            }
         </main >
 
 
