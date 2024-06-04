@@ -18,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scrollbar-none md:scrollbar-thin scrollbar-track-white scrollbar-thumb-[var(--main)]" >
+    <html lang="en" className="scrollbar-none md:scrollbar-thin scrollbar-track-white scrollbar-thumb-slate-900" >
       <body className={`${poppins.className}`}>{children}</body>
     </html>
   );
