@@ -1,5 +1,4 @@
 import React from 'react'
-import { auth } from '@/services/auth'
 import Image from 'next/image'
 
 //prisma
@@ -8,6 +7,8 @@ import { prisma } from '@/services/prisma'
 //shadcn
 import { Avatar, AvatarImage } from '@/components/ui/avatar'
 import { Separator } from "@/components/ui/separator"
+import { Ellipsis } from 'lucide-react'
+import Image_Low from './image-low'
 
 const Posts = async () => {
 
@@ -29,19 +30,24 @@ const Posts = async () => {
             {
                 posts.map((post) => (
                     <div className='space-y-4' key={post.id} >
-                        <div className="flex items-center gap-3 px-4">
-                            <Avatar className="w-10 h-10">
-                                <AvatarImage src={post.author.image || ''} />
-                            </Avatar>
-                            <div className="flex-1">
-                                <div className="font-medium">
-                                    <h1 className="md:text-base text-sm font-extrabold">
-                                        {post.author.userName}
-                                    </h1>
+                        <div className="flex items-center justify-between px-4 w-full">
+                            <div className="flex items-center gap-3">
+                                <Avatar className="w-10 h-10">
+                                    <AvatarImage src={post.author.image || ''} />
+                                </Avatar>
+                                <div className="flex-1">
+                                    <div className="font-medium">
+                                        <h1 className="md:text-base text-sm font-extrabold">
+                                            {post.author.userName}
+                                        </h1>
+                                    </div>
+                                    <div className="text-sm text-gray-500 dark:text-gray-400">
+                                        <p className='md:text-xs text-xs' >{`${post.createdAt.getDate()}/${post.createdAt.getMonth()}/${post.createdAt.getFullYear()}`}</p>
+                                    </div>
                                 </div>
-                                <div className="text-sm text-gray-500 dark:text-gray-400">
-                                    <p className='md:text-xs text-xs' >{`${post.createdAt.getDate()}/${post.createdAt.getMonth()}/${post.createdAt.getFullYear()}`}</p>
-                                </div>
+                            </div>
+                            <div>
+                                <h1><Ellipsis /></h1>
                             </div>
                         </div>
                         <div className='md:[500px] w-full md:h-auto md:max-h-[468px] max-h-[520px] overflow-hidden'>
@@ -50,8 +56,10 @@ const Posts = async () => {
                                 alt='Imagens'
                                 width={500}
                                 height={500}
-                                objectFit='cover'
                             />
+                        </div>
+                        <div>
+                            <Image_Low />
                         </div>
                         {
                             post.title.length > 0 &&
