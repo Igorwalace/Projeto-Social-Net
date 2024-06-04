@@ -20,9 +20,10 @@ model User {
   sessions       Session[]
   authenticators Authenticator[]
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  Post      Post[]
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  Post         Post[]
+  FavoritePost FavoritePost[]
 }
 
 model Account {
@@ -81,12 +82,23 @@ model Authenticator {
 }
 
 model Post {
+  id           String         @id @default(cuid())
+  title        String
+  image        String
+  published    Boolean?       @default(false)
+  author       User           @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId     String
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  FavoritePost FavoritePost[]
+}
+
+model FavoritePost {
   id        String   @id @default(cuid())
-  title     String
-  image     String
-  published Boolean?  @default(false)
-  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  authorId  String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId    String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

@@ -9,8 +9,11 @@ import { Avatar, AvatarImage } from '@/components/ui/avatar'
 import { Separator } from "@/components/ui/separator"
 import { Ellipsis } from 'lucide-react'
 import Image_Low from './image-low'
+import { auth } from '@/services/auth'
 
 const Posts = async () => {
+
+    const session = await auth()
 
     const posts = await prisma.post.findMany({
         include: {
@@ -52,6 +55,7 @@ const Posts = async () => {
                         </div>
                         <div className='md:[500px] w-full md:h-auto md:max-h-[468px] max-h-[520px] overflow-hidden'>
                             <Image
+                                className='rounded-md'
                                 src={post.image || ''}
                                 alt='Imagens'
                                 width={500}
@@ -59,11 +63,14 @@ const Posts = async () => {
                             />
                         </div>
                         <div>
-                            <Image_Low />
+                            <Image_Low
+                                userId={session?.user?.id}
+                                postId={post.id}
+                            />
                         </div>
                         {
                             post.title.length > 0 &&
-                            <div className='text-sm max-w-[500px] px-2 md:px-0 space-x-2' >
+                            <div className='text-sm max-w-[500px] px-4 space-x-2' >
                                 <p className='font-extrabold text-black' >{post.author.userName}
                                     <span className='font-normal ml-2' >{post.title}</span>
                                 </p>
