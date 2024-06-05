@@ -21,20 +21,20 @@ import Button_Logout from "../../componentes/button-logout"
 
 //icons
 import { Menu } from "lucide-react"
+import Avatar_Shadcn from "../../componentes/avatar-shadcn"
 
 const AvatarFunctions = async () => {
 
-    const user = await auth()
 
     return (
         <>
             <Menubar>
                 <MenubarMenu>
                     <MenubarTrigger className="bg-transparent" >
-                        <Avatar className='md:block hidden w-8 h-8 md:w-10 md:h-10 border-[1px] border-white' >
-                            <AvatarImage className="" src={user?.user?.image || ''} />
+                        <Avatar className='block md:hidden w-8 h-8 md:w-10 md:h-10 md:border-[1px] border-white' >
+                            <Avatar_Shadcn />
                         </Avatar>
-                        <button className="md:hidden z-50" ><Menu className="w-7 h-7" /></button>
+                        <Menu className="w-7 h-7 md:hidden z-50" />
                     </MenubarTrigger>
                     <MenubarContent className="mt-2 mr-5" >
                         <MenubarItem>Profile</MenubarItem>

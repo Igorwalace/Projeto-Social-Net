@@ -1,11 +1,11 @@
 import React from 'react'
 
 //pages
-import Posts from './components/posts'
-import Messages from './components/messages'
-import Menu_Left from './components/menu-left'
+import Menu_Left from '../home/components/menu-left'
+import Messages from '../home/components/messages'
+import Profile_Single from './components-profile/profile.single'
 
-const Home_Main = async () => {
+const Profile_Home = async () => {
 
     return (
         <main className="flex items-center justify-between md:max-w-6xl mx-auto scrollbar-none">
@@ -13,7 +13,7 @@ const Home_Main = async () => {
                 <div className="hidden md:block">
                     <Menu_Left />
                 </div>
-                <Posts />
+                <Profile_Single />
                 <div className="hidden md:block">
                     <Messages />
                 </div>
@@ -22,4 +22,4 @@ const Home_Main = async () => {
     )
 }
 
-export default Home_Main
+export default Profile_Home

@@ -57,13 +57,14 @@ const Posts = async () => {
                                 <h1><Ellipsis /></h1>
                             </div>
                         </div>
-                        <div className='md:[500px] w-full md:h-auto md:max-h-[468px] max-h-[520px] overflow-hidden'>
+                        <div className='md:[500px] w-full md:h-auto md:max-h-[468px] max-h-[520px] overflow-hidden w-auto h-auto'>
                             <Image
-                                className='rounded-md'
+                                className='rounded-md w-auto h-auto'
                                 src={post.image || ''}
                                 alt='Imagens'
                                 width={500}
                                 height={500}
+                                priority
                             />
                         </div>
                         <div>

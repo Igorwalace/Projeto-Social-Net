@@ -8,19 +8,8 @@ const Messages = async () => {
     return (
         <aside className="fixed top-[92px] right-5 bottom-5 w-80 bg-white dark:bg-gray-800 rounded-xl p-6 overflow-y-auto scrollbar-none">
             <h2 className="text-lg font-medium mb-4">Messages</h2>
-            <div className="space-y-4">
-                <Messages_Single />
-                <Messages_Single />
-                <Messages_Single />
-                <Messages_Single />
-                <Messages_Single />
-                <Messages_Single />
-                <Messages_Single />
-                <Messages_Single />
-                <Messages_Single />
-                <Messages_Single />
-                <Messages_Single />
-                <Messages_Single />
+            <div className="space-y-4 text-center">
+                Em breve!
             </div>
         </aside>
     )
