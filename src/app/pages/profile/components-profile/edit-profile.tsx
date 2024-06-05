@@ -28,18 +28,66 @@ const Edit_Profile = ({ name, userName, description }: UserEdit) => {
     const { toast } = useToast()
 
     const [isOpen, setIsOpen] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
 
-    const [newName, setNewName] = useState('')
-    const [newUserName, setNewUserName] = useState('')
-    const [newBio, setNewBio] = useState('')
+    const [newName, setNewName] = useState(name)
+    const [newUserName, setNewUserName] = useState(userName)
+    const [newBio, setNewBio] = useState(description)
 
     const handleSave = async () => {
         if (
             newName.length > 20 ||
             newBio.length > 70 ||
             newUserName.length > 20
-        ) return
-        uploadProfile(newName, newUserName, newBio)
+        ) {
+            toast({
+                title: "Attention!",
+                description: "Review again."
+            })
+            return
+        }
+
+        if(newName === '' && newUserName === '' && newBio === ''){
+            setIsOpen(false)
+            return
+        }
+        if(newBio.length < 10){
+            toast({
+                title: "Attention!",
+                description: "Add more words to bio."
+            })
+            return
+        }
+        if(newUserName.length < 3){
+            toast({
+                title: "Attention!",
+                description: "Add more words to username."
+            })
+            return
+        }
+        if(newName.length < 3){
+            toast({
+                title: "Attention!",
+                description: "Add more words to name."
+            })
+            return
+        }
+
+        setIsLoading(true)
+        await uploadProfile(newName, newUserName, newBio)
+        setIsLoading(false)
+
+        toast({
+            title: "Warning!",
+            description: "For the changes to take effect, you need to reload the page."
+        })
+        setIsOpen(false)
+    }
+
+    const handleKeyPress = (e: any) => {
+        if (!isNaN(e.key)) {
+            e.preventDefault();
+        }
     }
 
     const handleCancel = () => {
@@ -64,7 +112,7 @@ const Edit_Profile = ({ name, userName, description }: UserEdit) => {
                                 Name
                             </Label>
                             <div className="col-span-3 grid gap-1">
-                                <Input id="name" placeholder={name} onChange={(e) => setNewName(e.target.value)} className="col-span-3" />
+                                <Input id="name" placeholder={name} onKeyPress={handleKeyPress} onChange={(e) => setNewName(e.target.value)} className="col-span-3" />
                                 <div className="text-xs text-gray-500 dark:text-gray-400 px-3"><span className={`${newName.length > 20 && 'text-red-800'}`} >{newName.length}</span> - 20 characters</div>
                             </div>
                         </div>
@@ -93,7 +141,13 @@ const Edit_Profile = ({ name, userName, description }: UserEdit) => {
                         </div>
                     </div>
                     <div className="flex w-full items-center justify-center md:justify-end gap-2 flex-col md:flex-row">
-                        <button className='p-2 text-sm w-full md:w-auto rounded-md bg-[var(--main)] text-white hover:scale-[1.01] duration-200' onClick={handleSave} >Save changes</button>
+                        {
+                            isLoading 
+                            ?
+                            <button className='p-2 text-sm w-full md:w-auto rounded-md bg-slate-500 text-white hover:scale-[1.01] duration-200' onClick={handleSave} disabled >Saving changes...</button>
+                            :
+                            <button className='p-2 text-sm w-full md:w-auto rounded-md bg-[var(--main)] text-white hover:scale-[1.01] duration-200' onClick={handleSave} >Save changes</button>
+                        }
                         <button className='p-2 w-full text-sm md:w-auto rounded-md bg-white border-[1px] border-gray-300 text-[var(--main)]' onClick={handleCancel} >Cancel</button>
                     </div>
                 </SheetContent>

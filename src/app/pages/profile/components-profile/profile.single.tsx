@@ -57,7 +57,8 @@ const Profile_Single = async () => {
                         <p className="text-gray-600 dark:text-gray-400 text-sm">@{user?.userName}</p>
                     </div>
                 </div>
-                <Separator />
+                <div className="px-2"><Separator /></div>
+                <div className="px-2"><Separator /></div>
                 <div className="px-6 py-4">
                     {
                         user?.description != null
@@ -72,19 +73,20 @@ const Profile_Single = async () => {
 
                     }
                 </div>
-                <Separator />
-                <div className='flex mt-2 items-center justify-center' >
+                <div className="px-2"><Separator /></div>
+                <div className=" border-gray-200 px-6 py-2 grid grid-cols-1 gap-4">
+                    <div className="text-center">
+                        <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100">{user?.Post.length}</h3>
+                        <p className="text-gray-600 dark:text-gray-400">{user?.Post.length == 1 ? 'Post' : 'Posts'}</p>
+                    </div>
+                </div>
+                <div className="px-2"><Separator /></div>
+                <div className='flex my-2 items-center justify-center' >
                     <Edit_Profile
                         name={user?.name || ''}
                         userName={user?.userName || ''}
                         description={user?.description || 'nenhum'}
                     />
-                </div>
-                <div className="border-b border-gray-200 dark:border-gray-800 px-6 py-4 grid grid-cols-1 gap-4">
-                    <div className="text-center">
-                        <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100">{user?.Post.length}</h3>
-                        <p className="text-gray-600 dark:text-gray-400">{user?.Post.length == 1 ? 'Post' : 'Posts'}</p>
-                    </div>
                 </div>
                 <main className="flex flex-col items-center justify-center gap-5 bg-slate-100 md:px-10 py-5 w-full md:max-w-xl md:mx-auto">
                     {
