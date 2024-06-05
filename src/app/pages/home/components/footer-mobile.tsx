@@ -18,7 +18,7 @@ const Footer_Mobile = async () => {
                 <header className='flex items-center justify-between max-w-6xl mx-auto' >
                     <span><HomeIcon className="w-5 h-5" /></span>
                     <span><SearchIcon /></span>
-                    <Avatar className="w-7 h-7">
+                    <Avatar className="w-8 h-8">
                         <AvatarImage src={user?.user?.image || ''} />
                     </Avatar>
                     <span><Bookmark className="w-5 h-5" /></span>
