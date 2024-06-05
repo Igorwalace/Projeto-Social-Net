@@ -11,6 +11,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import Avatar_Shadcn from '../../componentes/avatar-shadcn'
 import Post_single from '../../componentes/post-single'
 import Edit_Profile from './edit-profile'
+import { Separator } from '@/components/ui/separator'
 
 const Profile_Single = async () => {
 
@@ -56,13 +57,15 @@ const Profile_Single = async () => {
                             <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100">{user?.name}</h2>
                             <p className="text-gray-600 dark:text-gray-400 text-base">@{user?.userName}</p>
                         </div>
-                        <Edit_Profile
-                            name={user?.name || ''}
-                            userName={user?.userName || ''}
-                            description={user?.description || 'nenhum'}
-                        />
+
                     </div>
                 </div>
+                <Edit_Profile
+                    name={user?.name || ''}
+                    userName={user?.userName || ''}
+                    description={user?.description || 'nenhum'}
+                />
+                <Separator />
                 <div className="px-6 py-4">
                     {
                         user?.description != null
