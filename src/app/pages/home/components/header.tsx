@@ -16,7 +16,7 @@ const Header = () => {
 
     return (
         <>
-            <main className='bg-[var(--main)] text-white py-4 px-6' >
+            <main className='bg-[var(--main)] text-white md:p-4 py-2  px-6' >
                 <header className='flex items-center justify-between max-w-6xl mx-auto' >
                     <div className="flex items-center">
                         <Link className="flex items-center" href="#">

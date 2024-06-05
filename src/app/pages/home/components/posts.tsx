@@ -14,9 +14,13 @@ import { auth } from '@/services/auth'
 const Posts = async () => {
 
     const session = await auth()
-
     const posts = await prisma.post.findMany({
         include: {
+            FavoritePost: {
+                select: {
+                    user: true
+                }
+            },
             author: {
                 select: {
                     name: true,

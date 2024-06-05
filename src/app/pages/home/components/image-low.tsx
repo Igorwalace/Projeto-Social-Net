@@ -2,7 +2,7 @@
 import { Bookmark, Heart, MessageCircle } from 'lucide-react'
 
 //react
-import React from 'react'
+import React, { useEffect } from 'react'
 import { auth } from '@/services/auth'
 
 //functions
@@ -10,8 +10,6 @@ import { Create_Favorite } from '../components-prisma-create/create-favorite'
 
 //prisma
 import { prisma } from '@/services/prisma'
-
-
 
 interface Ids {
     userId: any
