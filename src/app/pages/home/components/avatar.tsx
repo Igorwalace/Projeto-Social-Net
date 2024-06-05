@@ -31,7 +31,7 @@ const AvatarFunctions = async () => {
             <Menubar>
                 <MenubarMenu>
                     <MenubarTrigger className="bg-transparent" >
-                        <Avatar className='block md:hidden w-8 h-8 md:w-10 md:h-10 md:border-[1px] border-white' >
+                        <Avatar className='md:block hidden w-8 h-8 md:w-10 md:h-10 md:border-[1px] border-white' >
                             <Avatar_Shadcn />
                         </Avatar>
                         <Menu className="w-7 h-7 md:hidden z-50" />
