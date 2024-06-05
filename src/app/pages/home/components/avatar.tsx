@@ -27,24 +27,26 @@ const AvatarFunctions = async () => {
     const user = await auth()
 
     return (
-        <Menubar>
-            <MenubarMenu>
-                <MenubarTrigger className="bg-transparent" >
-                    <Avatar className='md:block hidden w-8 h-8 md:w-10 md:h-10 border-[1px] border-white' >
-                        <AvatarImage className="" src={user?.user?.image || ''} />
-                    </Avatar>
-                    <span className="z-50" ><Menu className="w-7 h-7" /></span>
-                </MenubarTrigger>
-                <MenubarContent className="mt-2 mr-5" >
-                    <MenubarItem>Profile</MenubarItem>
-                    <MenubarItem>Favorites</MenubarItem>
-                    <MenubarSeparator />
-                    <MenubarItem>Feed</MenubarItem>
-                    <MenubarSeparator />
-                    <Button_Logout />
-                </MenubarContent>
-            </MenubarMenu>
-        </Menubar>
+        <>
+            <Menubar>
+                <MenubarMenu>
+                    <MenubarTrigger className="bg-transparent" >
+                        <Avatar className='md:block hidden w-8 h-8 md:w-10 md:h-10 border-[1px] border-white' >
+                            <AvatarImage className="" src={user?.user?.image || ''} />
+                        </Avatar>
+                        <button className="md:hidden z-50" ><Menu className="w-7 h-7" /></button>
+                    </MenubarTrigger>
+                    <MenubarContent className="mt-2 mr-5" >
+                        <MenubarItem>Profile</MenubarItem>
+                        <MenubarItem>Favorites</MenubarItem>
+                        <MenubarSeparator />
+                        <MenubarItem>Feed</MenubarItem>
+                        <MenubarSeparator />
+                        <Button_Logout />
+                    </MenubarContent>
+                </MenubarMenu>
+            </Menubar>
+        </>
     )
 }
 
