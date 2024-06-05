@@ -6,11 +6,11 @@ import { prisma } from '@/services/prisma'
 
 //shadcn
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { Button } from '@/components/ui/button'
 
 //pages
 import Avatar_Shadcn from '../../componentes/avatar-shadcn'
 import Post_single from '../../componentes/post-single'
+import Edit_Profile from './edit-profile'
 
 const Profile_Single = async () => {
 
@@ -54,9 +54,13 @@ const Profile_Single = async () => {
                     <div className="w-full mt-14 ml-4 flex items-center justify-between">
                         <div className="flex items-center justify-center flex-col">
                             <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100">{user?.name}</h2>
-                            <p className="text-gray-600 dark:text-gray-400">@{user?.userName}</p>
+                            <p className="text-gray-600 dark:text-gray-400 text-base">@{user?.userName}</p>
                         </div>
-                        <Button variant='ghost'>Edit Profile</Button>
+                        <Edit_Profile
+                            name={user?.name || ''}
+                            userName={user?.userName || ''}
+                            description={user?.description || 'nenhum'}
+                        />
                     </div>
                 </div>
                 <div className="px-6 py-4">
