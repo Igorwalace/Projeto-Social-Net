@@ -1,16 +1,16 @@
 import { auth } from '@/services/auth'
-import Image from 'next/image'
 import React from 'react'
+
+//prisma
 import { prisma } from '@/services/prisma'
 
 //shadcn
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+import { Button } from '@/components/ui/button'
 
 //pages
 import Avatar_Shadcn from '../../componentes/avatar-shadcn'
-import { Button } from '@/components/ui/button'
 import Post_single from '../../componentes/post-single'
-import { Post } from '../../tcs'
 
 const Profile_Single = async () => {
 
@@ -20,8 +20,7 @@ const Profile_Single = async () => {
             id: session?.user?.id
         },
         include: {
-            Post: {
-            }
+            Post: true
         }
     })
     const posts = await prisma.post.findMany({
@@ -34,15 +33,7 @@ const Profile_Single = async () => {
                     user: true
                 }
             },
-            author: {
-                select: {
-                    name: true,
-                    email: true,
-                    image: true,
-                    userName: true
-                }
-            },
-            
+            author: true
         }
     })
 
