@@ -45,7 +45,7 @@ const Profile_Single = async () => {
                 <div className="relative h-32 bg-gray-200 dark:bg-gray-800">
                     {/* <Image src="/placeholder.svg" alt="Banner" className="w-full h-full object-cover" width={400} height={128} /> */}
                 </div>
-                <div className="flex items-center px-6 -mt-12">
+                <div className="flex items-center px-6 -mt-12 mb-2">
                     <div className="relative">
                         <Avatar className="w-24 h-24 border-4 border-white dark:border-gray-900 rounded-full">
                             <Avatar_Shadcn />
@@ -53,18 +53,10 @@ const Profile_Single = async () => {
                         </Avatar>
                     </div>
                     <div className="w-full mt-14 ml-4 flex items-center justify-between">
-                        <div className="flex items-center justify-center flex-col">
-                            <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100">{user?.name}</h2>
-                            <p className="text-gray-600 dark:text-gray-400 text-base">@{user?.userName}</p>
-                        </div>
-
+                        <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100">{user?.name}</h2>
+                        <p className="text-gray-600 dark:text-gray-400 text-sm">@{user?.userName}</p>
                     </div>
                 </div>
-                <Edit_Profile
-                    name={user?.name || ''}
-                    userName={user?.userName || ''}
-                    description={user?.description || 'nenhum'}
-                />
                 <Separator />
                 <div className="px-6 py-4">
                     {
@@ -80,7 +72,15 @@ const Profile_Single = async () => {
 
                     }
                 </div>
-                <div className="border-y border-gray-200 dark:border-gray-800 px-6 py-4 grid grid-cols-1 gap-4">
+                <Separator />
+                <div className='flex mt-2 items-center justify-center' >
+                    <Edit_Profile
+                        name={user?.name || ''}
+                        userName={user?.userName || ''}
+                        description={user?.description || 'nenhum'}
+                    />
+                </div>
+                <div className="border-b border-gray-200 dark:border-gray-800 px-6 py-4 grid grid-cols-1 gap-4">
                     <div className="text-center">
                         <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100">{user?.Post.length}</h3>
                         <p className="text-gray-600 dark:text-gray-400">{user?.Post.length == 1 ? 'Post' : 'Posts'}</p>

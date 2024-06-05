@@ -34,24 +34,29 @@ const Edit_Profile = ({ name, userName, description }: UserEdit) => {
     const [newBio, setNewBio] = useState('')
 
     const handleSave = async () => {
-        if (newName.length > 20) {
-            // toast({
-            //     title: "Alert!",
-            //     description: "Você ",
-            // })
-            return
-        }
+        if (
+            newName.length > 20 ||
+            newBio.length > 70 ||
+            newUserName.length > 20
+        ) return
         uploadProfile(newName, newUserName, newBio)
+    }
+
+    const handleCancel = () => {
+        setIsOpen(false)
+        setNewUserName('')
+        setNewName('')
+        setNewBio('')
     }
 
     return (
         <>
-            <Button onClick={() => setIsOpen(true)} variant='ghost'>Edit Profile</Button>
+            <Button onClick={() => setIsOpen(true)} variant='ghost' className='w-[90%] bg-[var(--main)] text-white'>Edit Profile</Button>
             <Sheet open={isOpen} onOpenChange={setIsOpen} >
-                <SheetContent side='top' >
+                <SheetContent side='top' className='rounded-b-lg md:w-[50%] w-full mx-auto ' >
                     <SheetHeader className='text-left' >
                         <SheetTitle>Edit profile</SheetTitle>
-                        <h1 className='text-base' >Make changes to your profile here. Click save when you&apos;re done.</h1>
+                        <h1 className='text-sm' >Make changes to your profile here. Click save when you&apos;re done.</h1>
                     </SheetHeader>
                     <div className="grid gap-4 py-4">
                         <div className="grid items-center grid-cols-4 gap-4">
@@ -60,7 +65,7 @@ const Edit_Profile = ({ name, userName, description }: UserEdit) => {
                             </Label>
                             <div className="col-span-3 grid gap-1">
                                 <Input id="name" placeholder={name} onChange={(e) => setNewName(e.target.value)} className="col-span-3" />
-                                <div className="text-xs text-gray-500 dark:text-gray-400 px-3">{newName.length} - 20 characters</div>
+                                <div className="text-xs text-gray-500 dark:text-gray-400 px-3"><span className={`${newName.length > 20 && 'text-red-800'}`} >{newName.length}</span> - 20 characters</div>
                             </div>
                         </div>
                         <div className="grid items-center grid-cols-4 gap-4">
@@ -69,7 +74,7 @@ const Edit_Profile = ({ name, userName, description }: UserEdit) => {
                             </Label>
                             <div className="col-span-3 grid gap-1">
                                 <Input id="username" placeholder={userName} onChange={(e) => setNewUserName(e.target.value)} className="col-span-3" />
-                                <div className="text-xs text-gray-500 dark:text-gray-400 px-3">{newUserName.length} - 20 characters</div>
+                                <div className="text-xs text-gray-500 dark:text-gray-400 px-3"><span className={`${newUserName.length > 20 && 'text-red-800'}`} >{newUserName.length}</span> - 20 characters</div>
                             </div>
                         </div>
                         <div className="grid items-center grid-cols-4 gap-4">
@@ -83,13 +88,13 @@ const Edit_Profile = ({ name, userName, description }: UserEdit) => {
                                     onChange={(e) => setNewBio(e.target.value)}
                                     className="col-span-3"
                                 />
-                                <div className="text-xs text-gray-500 dark:text-gray-400 px-3">{newBio.length} - 100 characters</div>
+                                <div className="text-xs text-gray-500 dark:text-gray-400 px-3"><span className={`${newBio.length > 70 && 'text-red-800'}`} >{newBio.length}</span> - 70 characters</div>
                             </div>
                         </div>
                     </div>
-                    <div className="flex items-center justify-center gap-2 flex-col">
-                        <button className='p-2 text-sm w-full md:w-auto rounded-md bg-[var(--main)] text-white hover:scale-[1.01] durantion-200' onClick={handleSave} >Save changes</button>
-                        <button className='p-2 w-full text-sm md:w-auto rounded-md bg-white border-[1px] border-gray-300 text-[var(--main)]' onClick={()=>setIsOpen(false)} >Cancel</button>
+                    <div className="flex w-full items-center justify-center md:justify-end gap-2 flex-col md:flex-row">
+                        <button className='p-2 text-sm w-full md:w-auto rounded-md bg-[var(--main)] text-white hover:scale-[1.01] duration-200' onClick={handleSave} >Save changes</button>
+                        <button className='p-2 w-full text-sm md:w-auto rounded-md bg-white border-[1px] border-gray-300 text-[var(--main)]' onClick={handleCancel} >Cancel</button>
                     </div>
                 </SheetContent>
             </Sheet>
