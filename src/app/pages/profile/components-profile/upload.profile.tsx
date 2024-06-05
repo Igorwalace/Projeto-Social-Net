@@ -5,7 +5,13 @@ import { prisma } from "@/services/prisma"
 export const uploadProfile = async (newName: string, newUserName: string, newBio: string) => {
     const user = await auth()
     try {
-        const upsertUser = await prisma.user.update({
+        const check = await prisma.user.findFirst({
+            where: {
+                userName: newUserName
+            }
+        })
+        if(check) return true
+        await prisma.user.update({
             where: {
                 id: user?.user?.id
             },

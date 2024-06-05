@@ -47,25 +47,25 @@ const Edit_Profile = ({ name, userName, description }: UserEdit) => {
             return
         }
 
-        if(newName === '' && newUserName === '' && newBio === ''){
+        if (newName === '' && newUserName === '' && newBio === '') {
             setIsOpen(false)
             return
         }
-        if(newBio.length < 10){
+        if (newBio.length < 3) {
             toast({
                 title: "Attention!",
                 description: "Add more words to bio."
             })
             return
         }
-        if(newUserName.length < 3){
+        if (newUserName.length < 3) {
             toast({
                 title: "Attention!",
                 description: "Add more words to username."
             })
             return
         }
-        if(newName.length < 3){
+        if (newName.length < 3) {
             toast({
                 title: "Attention!",
                 description: "Add more words to name."
@@ -74,7 +74,17 @@ const Edit_Profile = ({ name, userName, description }: UserEdit) => {
         }
 
         setIsLoading(true)
-        await uploadProfile(newName, newUserName, newBio)
+        const res = await uploadProfile(newName, newUserName, newBio)
+        if (res) {
+            if (newUserName != userName) {
+                toast({
+                    title: "Attention!",
+                    description: "This username already exists."
+                })
+                setIsLoading(false)
+                return
+            }
+        }
         setIsLoading(false)
 
         toast({
@@ -142,11 +152,11 @@ const Edit_Profile = ({ name, userName, description }: UserEdit) => {
                     </div>
                     <div className="flex w-full items-center justify-center md:justify-end gap-2 flex-col md:flex-row">
                         {
-                            isLoading 
-                            ?
-                            <button className='p-2 text-sm w-full md:w-auto rounded-md bg-slate-500 text-white hover:scale-[1.01] duration-200' onClick={handleSave} disabled >Saving changes...</button>
-                            :
-                            <button className='p-2 text-sm w-full md:w-auto rounded-md bg-[var(--main)] text-white hover:scale-[1.01] duration-200' onClick={handleSave} >Save changes</button>
+                            isLoading
+                                ?
+                                <button className='p-2 text-sm w-full md:w-auto rounded-md bg-slate-500 text-white hover:scale-[1.01] duration-200' onClick={handleSave} disabled >Saving changes...</button>
+                                :
+                                <button className='p-2 text-sm w-full md:w-auto rounded-md bg-[var(--main)] text-white hover:scale-[1.01] duration-200' onClick={handleSave} >Save changes</button>
                         }
                         <button className='p-2 w-full text-sm md:w-auto rounded-md bg-white border-[1px] border-gray-300 text-[var(--main)]' onClick={handleCancel} >Cancel</button>
                     </div>
