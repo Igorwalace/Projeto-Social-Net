@@ -6,13 +6,8 @@ export interface Author {
     userName: string | null;
 }
 
-export type Post = {
-    author: {
-        image: string | null;
-        name: string | null;
-        email: string;
-        userName: string | null;
-    };
+export interface Post {
+    author: Author
     id: string;
     title: string;
     image: string;
@@ -21,3 +16,7 @@ export type Post = {
     createdAt: Date;
     updatedAt: Date;
 }
+
+export interface PostSingle extends Post {
+    author: Author
+};
