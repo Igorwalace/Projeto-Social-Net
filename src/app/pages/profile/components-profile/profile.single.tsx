@@ -90,7 +90,9 @@ const Profile_Single = async () => {
                 </div>
                 <main className="flex flex-col items-center justify-center gap-5 bg-slate-100 md:px-10 py-5 w-full md:max-w-xl md:mx-auto">
                     {
-                        posts.map((post) => (
+                        posts
+                        .toReversed()
+                        .map((post) => (
                             <Post_single post={post} key={post.id} session={session} />
                         ))
                     }
