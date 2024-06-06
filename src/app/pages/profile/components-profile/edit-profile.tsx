@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 //shadcn
 import {
@@ -10,13 +10,14 @@ import {
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet"
-
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
-import { uploadProfile } from './upload.profile'
 import { useToast } from '@/components/ui/use-toast'
+
+//functions
+import { uploadProfile } from './upload.profile'
 
 interface UserEdit {
     name: string
@@ -29,35 +30,34 @@ const Edit_Profile = ({ name, userName, description }: UserEdit) => {
 
     const [isOpen, setIsOpen] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
+    const [isDisabledButton, setIsDisabledButton] = useState(false)
 
     const [newName, setNewName] = useState(name)
     const [newUserName, setNewUserName] = useState(userName)
     const [newBio, setNewBio] = useState(description)
 
-    const handleSave = async () => {
-        if (
-            newName.length > 20 ||
-            newBio.length > 70 ||
-            newUserName.length > 20
-        ) {
-            toast({
-                title: "Attention!",
-                description: "Review again."
-            })
-            return
-        }
+    useEffect(() => {
 
         if (newName === '' && newUserName === '' && newBio === '') {
-            setIsOpen(false)
-            return
-        }
-        if (newBio.length < 3) {
+            setIsDisabledButton(true)
+        } else setIsDisabledButton(false)
+
+        if (
+            newName.length > 20 || newBio.length > 70 || newUserName.length > 20) {
+            setIsDisabledButton(true)
+        } else setIsDisabledButton(false)
+
+    }, [newName, newUserName, newBio])
+
+    const handleSave = async () => {
+        if (newBio.length < 10) {
             toast({
                 title: "Attention!",
                 description: "Add more words to bio."
             })
             return
         }
+
         if (newUserName.length < 3) {
             toast({
                 title: "Attention!",
@@ -65,6 +65,7 @@ const Edit_Profile = ({ name, userName, description }: UserEdit) => {
             })
             return
         }
+
         if (newName.length < 3) {
             toast({
                 title: "Attention!",
@@ -75,18 +76,16 @@ const Edit_Profile = ({ name, userName, description }: UserEdit) => {
 
         setIsLoading(true)
         const res = await uploadProfile(newName, newUserName, newBio)
-        if (res) {
-            if (newUserName != userName) {
-                toast({
-                    title: "Attention!",
-                    description: "This username already exists."
-                })
-                setIsLoading(false)
-                return
-            }
+        if (res === 'Exist') {
+            toast({
+                title: "Attention!",
+                description: "This username already exists."
+            })
+            setIsLoading(false)
+            return
+
         }
         setIsLoading(false)
-
         toast({
             title: "Warning!",
             description: "For the changes to take effect, you need to reload the page."
@@ -145,15 +144,19 @@ const Edit_Profile = ({ name, userName, description }: UserEdit) => {
                     </div>
                     <div className="flex w-full items-center justify-center md:justify-end gap-2 flex-col md:flex-row">
                         {
-                            isLoading
+                            isDisabledButton
                                 ?
-                                <button className='p-2 text-sm w-full md:w-auto rounded-md bg-slate-500 text-white hover:scale-[1.01] duration-200' onClick={handleSave} disabled >Saving changes...</button>
+                                <button className='p-2 text-sm w-full md:w-auto rounded-md bg-slate-500 text-white hover:scale-[1.01] duration-200' disabled >Save changes</button>
                                 :
-                                <button className='p-2 text-sm w-full md:w-auto rounded-md bg-[var(--main)] text-white hover:scale-[1.01] duration-200' onClick={handleSave} >Save changes</button>
+                                isLoading
+                                    ?
+                                    <button className='p-2 text-sm w-full md:w-auto rounded-md bg-slate-500 text-white hover:scale-[1.01] duration-200' disabled >Saving changes...</button>
+                                    :
+                                    <button className='p-2 text-sm w-full md:w-auto rounded-md bg-[var(--main)] text-white hover:scale-[1.01] duration-200' onClick={handleSave} >Save changes</button>
                         }
                     </div>
                 </SheetContent>
-            </Sheet>
+            </Sheet >
 
 
         </>

@@ -10,8 +10,10 @@ export const uploadProfile = async (newName: string, newUserName: string, newBio
                 userName: newUserName
             }
         })
-        if(check) return true
-        await prisma.user.update({
+        if(check){
+            if(check.userName != newUserName) return 'Exist'
+        }
+        const upload = await prisma.user.update({
             where: {
                 id: user?.user?.id
             },
@@ -21,6 +23,7 @@ export const uploadProfile = async (newName: string, newUserName: string, newBio
                 description: newBio
             }
         })
+        console.log(upload)
     } catch (error) {
         console.log(error)
     }
