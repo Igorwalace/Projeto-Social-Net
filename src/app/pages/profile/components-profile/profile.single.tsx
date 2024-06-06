@@ -12,6 +12,7 @@ import Avatar_Shadcn from '../../componentes/avatar-shadcn'
 import Post_single from '../../componentes/post-single'
 import Edit_Profile from './edit-profile'
 import { Separator } from '@/components/ui/separator'
+import { Button } from '@/components/ui/button'
 
 const Profile_Single = async () => {
 
@@ -45,7 +46,7 @@ const Profile_Single = async () => {
                 <div className="relative h-32 bg-gray-200 dark:bg-gray-800">
                     {/* <Image src="/placeholder.svg" alt="Banner" className="w-full h-full object-cover" width={400} height={128} /> */}
                 </div>
-                <div className="flex items-center px-6 -mt-12 mb-2">
+                <div className="flex items-center px-6 -mt-12">
                     <div className="relative">
                         <Avatar className="w-24 h-24 border-4 border-white dark:border-gray-900 rounded-full">
                             <Avatar_Shadcn />
@@ -57,8 +58,6 @@ const Profile_Single = async () => {
                         <p className="text-gray-600 dark:text-gray-400 text-sm">@{user?.userName}</p>
                     </div>
                 </div>
-                <div className="px-2"><Separator /></div>
-                <div className="px-2"><Separator /></div>
                 <div className="px-6 py-4">
                     {
                         user?.description != null
@@ -80,13 +79,13 @@ const Profile_Single = async () => {
                         <p className="text-gray-600 dark:text-gray-400">{user?.Post.length == 1 ? 'Post' : 'Posts'}</p>
                     </div>
                 </div>
-                <div className="px-2"><Separator /></div>
-                <div className='flex my-2 items-center justify-center' >
+                <div className='flex mb-2 items-center justify-center gap-3 px-3' >
                     <Edit_Profile
                         name={user?.name || ''}
                         userName={user?.userName || ''}
                         description={user?.description || 'nenhum'}
                     />
+                    <Button variant='ghost' className='w-full'>Share profile</Button>
                 </div>
                 <main className="flex flex-col items-center justify-center gap-5 bg-slate-100 md:px-10 py-5 w-full md:max-w-xl md:mx-auto">
                     {

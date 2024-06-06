@@ -100,16 +100,9 @@ const Edit_Profile = ({ name, userName, description }: UserEdit) => {
         }
     }
 
-    const handleCancel = () => {
-        setIsOpen(false)
-        setNewUserName('')
-        setNewName('')
-        setNewBio('')
-    }
-
     return (
         <>
-            <Button onClick={() => setIsOpen(true)} variant='ghost' className='w-[90%] bg-[var(--main)] text-white'>Edit Profile</Button>
+            <Button onClick={() => setIsOpen(true)} variant='ghost' className='w-full bg-[var(--main)] text-white'>Edit Profile</Button>
             <Sheet open={isOpen} onOpenChange={setIsOpen} >
                 <SheetContent side='top' className='rounded-b-lg md:w-[50%] w-full mx-auto ' >
                     <SheetHeader className='text-left' >
@@ -158,7 +151,6 @@ const Edit_Profile = ({ name, userName, description }: UserEdit) => {
                                 :
                                 <button className='p-2 text-sm w-full md:w-auto rounded-md bg-[var(--main)] text-white hover:scale-[1.01] duration-200' onClick={handleSave} >Save changes</button>
                         }
-                        <button className='p-2 w-full text-sm md:w-auto rounded-md bg-white border-[1px] border-gray-300 text-[var(--main)]' onClick={handleCancel} >Cancel</button>
                     </div>
                 </SheetContent>
             </Sheet>
