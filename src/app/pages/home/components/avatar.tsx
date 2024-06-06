@@ -1,20 +1,19 @@
 
 //shadcn
-import { Avatar, AvatarImage } from "@/components/ui/avatar"
+import { Avatar } from "@/components/ui/avatar"
 import {
     Menubar,
     MenubarContent,
     MenubarItem,
     MenubarMenu,
     MenubarSeparator,
-    MenubarShortcut,
     MenubarTrigger,
 } from "@/components/ui/menubar"
 
 
 //react
 import React from 'react'
-import { auth } from '@/services/auth'
+import Link from "next/link"
 
 //pages
 import Button_Logout from "../../componentes/button-logout"
@@ -37,10 +36,10 @@ const AvatarFunctions = async () => {
                         <Menu className="w-7 h-7 md:hidden z-50" />
                     </MenubarTrigger>
                     <MenubarContent className="mt-2 mr-5" >
-                        <MenubarItem>Profile</MenubarItem>
+                        <MenubarItem><Link href='/pages/profile' >Profile</Link></MenubarItem>
                         <MenubarItem>Favorites</MenubarItem>
                         <MenubarSeparator />
-                        <MenubarItem>Feed</MenubarItem>
+                        <MenubarItem><Link href='/' >Home</Link></MenubarItem>
                         <MenubarSeparator />
                         <Button_Logout />
                     </MenubarContent>

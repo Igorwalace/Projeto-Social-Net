@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+#banner,
+.banner {
+    background-image: url('/banner.avif');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 @layer base {
     :root {
         --main: #111827;

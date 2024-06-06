@@ -4,7 +4,7 @@ import React from 'react'
 import Image_Low from '../home/components/image-low'
 import { Separator } from '@/components/ui/separator'
 import { Avatar, AvatarImage } from '@/components/ui/avatar'
-import { PostSingle } from '../tcs'
+import { PostSingle } from '../../../services/tcs'
 
 interface Post {
     post: PostSingle
@@ -13,7 +13,7 @@ interface Post {
 
 const Post_single = ({post, session}: Post) => {
     return (
-        <div className='space-y-4' key={post.id} >
+        <div className='space-y-4 w-full' key={post.id} >
             <div className="flex items-center justify-between px-4 w-full">
                 <div className="flex items-center gap-3">
                     <Avatar className="w-10 h-10">
@@ -34,9 +34,9 @@ const Post_single = ({post, session}: Post) => {
                     <h1><Ellipsis /></h1>
                 </div>
             </div>
-            <div className='md:[500px] w-full md:h-auto md:max-h-[468px] max-h-[520px] overflow-hidden h-auto'>
+            <div className='w-full min-h-[250px] md:min-h-[300px] flex items-center justify-center md:max-h-[468px] max-h-[520px] overflow-hidden h-auto'>
                 <Image
-                    className='rounded-md w-auto h-auto'
+                    className='rounded-md w-full h-auto'
                     src={post.image || ''}
                     alt='Imagens'
                     width={500}

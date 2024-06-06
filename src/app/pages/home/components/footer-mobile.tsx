@@ -25,7 +25,7 @@ const Footer_Mobile = async () => {
                         </Avatar>
                     </Link>
                     <span><Bookmark className="w-5 h-5" /></span>
-                    <span><CirclePlus className="w-5 h-5" /></span>
+                    <Link href='/pages/create-post' ><CirclePlus className="w-5 h-5" /></Link>
                 </header>
             </main>
         </>
