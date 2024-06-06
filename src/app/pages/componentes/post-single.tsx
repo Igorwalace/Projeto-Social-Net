@@ -1,10 +1,17 @@
-import { Ellipsis } from 'lucide-react'
+//react
 import Image from 'next/image'
 import React from 'react'
-import Image_Low from '../home/components/image-low'
+
+//shadcn
 import { Separator } from '@/components/ui/separator'
 import { Avatar, AvatarImage } from '@/components/ui/avatar'
+
+//pages
+import Image_Low from '../home/components/image-low'
 import { PostSingle } from '../../../services/tcs'
+
+//icons
+import { Ellipsis } from 'lucide-react'
 
 interface Post {
     post: PostSingle
@@ -22,8 +29,9 @@ const Post_single = ({post, session}: Post) => {
                     <div className="flex-1">
                         <div className="font-medium">
                             <h1 className="md:text-base text-sm font-extrabold">
-                                {post.author.userName}
+                                {post.author.userName} 
                             </h1>
+                            {/* <h1>{post.createdAt.toLocaleDateString}</h1> */}
                         </div>
                         <div className="text-sm text-gray-500 dark:text-gray-400">
                             <p className='md:text-xs text-xs' >{`${post.createdAt.getDate()}/${post.createdAt.getMonth()}/${post.createdAt.getFullYear()}`}</p>
