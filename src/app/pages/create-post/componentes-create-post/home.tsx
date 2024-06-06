@@ -26,24 +26,6 @@ const Home = async () => {
                     <div className="space-y-4">
                         <Function_Send_Image session={session} />
                     </div>
-                    {/* <div>
-                        <h2 className="text-2xl font-bold">Preview</h2>
-                        <div className="prose prose-gray dark:prose-invert">
-                            <h3>{title}</h3>
-                            <div className="grid grid-cols-3 gap-4">
-                                {images.map((image, index) => (
-                                    <img
-                                        key={index}
-                                        src="/placeholder.svg"
-                                        alt={`Image ${index + 1}`}
-                                        width={200}
-                                        height={200}
-                                        className="object-cover rounded-md"
-                                    />
-                                ))}
-                            </div>
-                        </div>
-                    </div> */}
                 </div>
             </div>
 

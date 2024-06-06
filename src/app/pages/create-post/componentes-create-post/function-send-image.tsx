@@ -33,11 +33,13 @@ const Function_Send_Image = (session: any) => {
     const [urlImg, setUrlImg] = useState('')
 
     useEffect(() => {
+        setCheck(true)
         if (progress > 100) return
         if (!urlImg) return
         if (!ready) return
+        if (isLoading) return
         setCheck(false)
-    }, [urlImg, progress, ready])
+    }, [urlImg, progress, ready, isLoading])
 
     const handleFileInput = (e: any) => {
         const file = e.target.files[0];
@@ -102,6 +104,7 @@ const Function_Send_Image = (session: any) => {
 
     const handleClearImages = () => {
         setUrlImg('')
+        setFile(null)
         setProgress(0)
         setCheck(true)
     }
@@ -109,10 +112,10 @@ const Function_Send_Image = (session: any) => {
     return (
         <>
             <div>
-                <Label htmlFor="title">Title</Label>
+                <Label className='ml-3' htmlFor="content">Description</Label>
                 <Textarea
                     id="content"
-                    placeholder="Start writing your post here..."
+                    placeholder="Start writing your post here... (opcional)"
                     className="h-[100px]"
                     rows={10}
                     value={title}
@@ -120,8 +123,9 @@ const Function_Send_Image = (session: any) => {
                 />
             </div>
             <div>
-                <div className="flex items-center justify-center">
-                    <div className="md:w-[100%] w-5/6 relative flex items-center justify-center md:h-[300px] h-[300px] bg-white rounded-md">
+                <div className="flex items-start justify-center flex-col gap-2">
+                    <Label className='ml-3' htmlFor="file">Image</Label>
+                    <div className="w-full relative flex items-center justify-center md:h-[300px] h-[300px] bg-white rounded-md">
                         {
                             isLoading &&
                             <div className='bg-[rgb(0,0,0,0.3)] absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center rounded-md z-20' >
@@ -155,20 +159,14 @@ const Function_Send_Image = (session: any) => {
                 </div>
             </div>
             <div className="flex justify-end">
-                <Button variant='ghost' onClick={handleClearImages} >
+                <Button variant='ghost' disabled={isLoading || buttonLoading} onClick={handleClearImages}>
                     Clear Images
                 </Button>
-                {
-                    check
-                        ?
-                        <Button disabled >Publish Post</Button>
-                        :
-                        buttonLoading
-                            ?
-                            <Button disabled className='w-[114px]' ><span className="loader2"></span></Button>
-                            :
-                            <Button onClick={handlePublish}>Publish Post</Button>
-                }
+                <Button className={`${buttonLoading && 'w-[114px]'}`} disabled={buttonLoading || check} onClick={handlePublish}>
+                    {
+                        buttonLoading ? <span className="loader2"></span> : 'Publish Post'
+                    }
+                </Button>
             </div>
         </>
     )
