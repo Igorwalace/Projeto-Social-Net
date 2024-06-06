@@ -94,6 +94,9 @@ const Function_Send_Image = (session: any) => {
         setButtonLoading(true)
         await Create_Post_Prisma(urlImg, title)
         setButtonLoading(false)
+        setUrlImg('')
+        setProgress(0)
+        setCheck(true)
         router.push('/')
     }
 
@@ -119,12 +122,12 @@ const Function_Send_Image = (session: any) => {
             <div>
                 <div className="flex items-center justify-center">
                     <div className="md:w-[100%] w-5/6 relative flex items-center justify-center md:h-[300px] h-[300px] bg-white rounded-md">
-                    {
-                        isLoading &&
-                        <div className='bg-[rgb(0,0,0,0.3)] absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center rounded-md z-20' >
-                            <span className="loader"></span>
-                        </div>
-                    }
+                        {
+                            isLoading &&
+                            <div className='bg-[rgb(0,0,0,0.3)] absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center rounded-md z-20' >
+                                <span className="loader"></span>
+                            </div>
+                        }
                         {
                             !file &&
                             <Label htmlFor="file" className='bg-blue-600 p-3 rounded-md hover:scale-95 duration-200 cursor-pointer z-10' >Add a image</Label>
@@ -161,10 +164,10 @@ const Function_Send_Image = (session: any) => {
                         <Button disabled >Publish Post</Button>
                         :
                         buttonLoading
-                        ?
-                        <Button disabled className='w-[114px]' ><span className="loader2"></span></Button>
-                        :
-                        <Button onClick={handlePublish}>Publish Post</Button>
+                            ?
+                            <Button disabled className='w-[114px]' ><span className="loader2"></span></Button>
+                            :
+                            <Button onClick={handlePublish}>Publish Post</Button>
                 }
             </div>
         </>
