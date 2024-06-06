@@ -13,6 +13,7 @@ import Post_single from '../../componentes/post-single'
 import Edit_Profile from './edit-profile'
 import { Separator } from '@/components/ui/separator'
 import { Button } from '@/components/ui/button'
+import { poppins } from '@/app/fonts/font'
 
 const Profile_Single = async () => {
 
@@ -53,7 +54,7 @@ const Profile_Single = async () => {
                             <AvatarFallback className='text-3xl' >{user?.image}</AvatarFallback>
                         </Avatar>
                     </div>
-                    <div className="w-full mt-14 ml-4 flex items-center justify-between">
+                    <div className="w-full mt-14 ml-1 flex items-center justify-between">
                         <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100">{user?.name}</h2>
                         <p className="text-gray-600 dark:text-gray-400 text-sm">@{user?.userName}</p>
                     </div>
@@ -62,9 +63,9 @@ const Profile_Single = async () => {
                     {
                         user?.description != null
                             ?
-                            <p className="text-gray-700 dark:text-gray-300 text-sm">
+                            <pre className={`${poppins.className} text-gray-700 dark:text-gray-300 text-sm`}>
                                 {user?.description}
-                            </p>
+                            </pre>
                             :
                             <p className="text-gray-700 dark:text-gray-300 text-sm">
                                 Bio
