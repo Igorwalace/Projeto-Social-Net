@@ -31,10 +31,9 @@ const Post_single = ({post, session}: Post) => {
                             <h1 className="md:text-base text-sm font-extrabold">
                                 {post.author.userName} 
                             </h1>
-                            {/* <h1>{post.createdAt.toLocaleDateString}</h1> */}
                         </div>
                         <div className="text-sm text-gray-500 dark:text-gray-400">
-                            <p className='md:text-xs text-xs' >{`${post.createdAt.getDate()}/${post.createdAt.getMonth()}/${post.createdAt.getFullYear()}`}</p>
+                            <p className='md:text-xs text-xs' >{post.createdAt.toLocaleDateString()} as {post.createdAt.getHours()}:{post.createdAt.getMinutes()}</p>
                         </div>
                     </div>
                 </div>
