@@ -49,6 +49,14 @@ const Edit_Profile = ({ name, userName, description }: UserEdit) => {
 
     }, [newName, newUserName, newBio])
 
+    useEffect(() => {
+        if (!isOpen) {
+            setNewName(name)
+            setNewBio(description)
+            setNewUserName(userName)
+        }
+    }, [isOpen])
+
     const handleSave = async () => {
         if (newBio.length < 10) {
             toast({
@@ -101,7 +109,7 @@ const Edit_Profile = ({ name, userName, description }: UserEdit) => {
 
     return (
         <>
-            <Button onClick={() => setIsOpen(true)} variant='ghost' className='w-full bg-[var(--main)] text-white'>Edit Profile</Button>
+            <Button onClick={() => setIsOpen(true)} variant='ghost' className='w-full'>Edit Profile</Button>
             <Sheet open={isOpen} onOpenChange={setIsOpen} >
                 <SheetContent side='top' className='rounded-b-lg md:w-[50%] w-full mx-auto ' >
                     <SheetHeader className='text-left' >
