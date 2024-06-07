@@ -9,16 +9,16 @@ import { Avatar, AvatarImage } from '@/components/ui/avatar'
 //pages
 import Image_Low from '../home/components/image-low'
 import { PostSingle } from '../../../services/tcs'
+import Button_DrowpdownMenu from './button-dropdownMenu'
 
-//icons
-import { Ellipsis } from 'lucide-react'
 
 interface Post {
     post: PostSingle
     session: any
 }
 
-const Post_single = ({post, session}: Post) => {
+const Post_single = ({ post, session }: Post) => {
+
     return (
         <div className='space-y-4 w-full' key={post.id} >
             <div className="flex items-center justify-between px-4 w-full">
@@ -29,17 +29,20 @@ const Post_single = ({post, session}: Post) => {
                     <div className="flex-1">
                         <div className="font-medium">
                             <h1 className="md:text-base text-sm font-extrabold">
-                                {post.author.userName} 
+                                {post.author.userName}
                             </h1>
                         </div>
                         <div className="text-sm text-gray-500 dark:text-gray-400">
-                            <p className='md:text-xs text-xs' >{post.createdAt.toLocaleDateString()} as {post.createdAt.getHours()}:{post.createdAt.getMinutes()}</p>
+                            <p className='md:text-xs text-xs' >{post.createdAt.toLocaleDateString()} - {post.createdAt.getHours()}:{post.createdAt.getMinutes()}</p>
                         </div>
                     </div>
                 </div>
-                <div>
-                    <h1><Ellipsis /></h1>
-                </div>
+                <Button_DrowpdownMenu
+                    userName={post.author.userName || ''}
+                    userId={post.authorId || ''}
+                    userCurrent={session.user.id || ''}
+                    postId={post.id || ''}
+                />
             </div>
             <div className='w-full min-h-[250px] md:min-h-[300px] flex items-center justify-center md:max-h-[468px] max-h-[520px] overflow-hidden h-auto'>
                 <Image

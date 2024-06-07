@@ -1,5 +1,7 @@
 'use client'
+//react
 import React, { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 //shadcn
 import {
@@ -26,6 +28,7 @@ interface UserEdit {
 }
 
 const Edit_Profile = ({ name, userName, description }: UserEdit) => {
+    const router = useRouter()
     const { toast } = useToast()
 
     const [isOpen, setIsOpen] = useState(false)
@@ -94,6 +97,7 @@ const Edit_Profile = ({ name, userName, description }: UserEdit) => {
 
         }
         setIsLoading(false)
+        router.refresh()
         toast({
             title: "Warning!",
             description: "For the changes to take effect, you need to reload the page."
