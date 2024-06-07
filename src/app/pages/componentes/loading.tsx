@@ -3,7 +3,7 @@ import React from 'react'
 const Loading = () => {
     return (
         <>
-            <main className='fixed z-50 -top-10 bottom-0 right-0 left-0 bg-[rgba(0,0,0,0.2)] flex items-end justify-end md:pb-5 md:pr-5 pr-5 pb-5' >
+            <main className='fixed z-50 -top-10 bottom-0 right-0 left-0 bg-[rgba(0,0,0,0.2)] flex items-center justify-center md:pb-5 md:pr-5 pr-5 pb-5' >
                 <span className="loader"></span>
             </main>
         </>
