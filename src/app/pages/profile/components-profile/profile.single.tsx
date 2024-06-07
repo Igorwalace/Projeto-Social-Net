@@ -14,6 +14,7 @@ import Edit_Profile from './edit-profile'
 import { Separator } from '@/components/ui/separator'
 import { Button } from '@/components/ui/button'
 import { poppins } from '@/app/fonts/font'
+import Link from 'next/link'
 
 const Profile_Single = async () => {
 
@@ -89,6 +90,13 @@ const Profile_Single = async () => {
                     <Button variant='ghost' className='w-full'>Share profile</Button>
                 </div>
                 <main className="flex flex-col items-center justify-center gap-5 bg-slate-100 md:px-10 py-5 w-full md:max-w-xl md:mx-auto">
+                    {
+                        posts.length === 0 &&
+                        <div className='flex items-center justify-center gap-3 flex-col' >
+                            <h1>You have no posts to show.</h1>
+                            <Link href='/pages/create-post' ><Button variant='link' >Create new post</Button></Link>
+                        </div>
+                    }
                     {
                         posts
                         .toReversed()
