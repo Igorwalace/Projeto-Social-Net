@@ -33,7 +33,7 @@ const Post_single = ({ post, session }: Post) => {
                             </h1>
                         </div>
                         <div className="text-sm text-gray-500 dark:text-gray-400">
-                            <p className='md:text-xs text-xs' >{post.createdAt.toLocaleDateString()} - {post.createdAt.toLocaleTimeString()}</p>
+                            <p className='md:text-xs text-xs' >{post.createdAt.toLocaleString()}</p>
                         </div>
                     </div>
                 </div>
