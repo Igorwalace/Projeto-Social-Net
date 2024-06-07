@@ -31,7 +31,7 @@ interface State {
 const Modal_Confirm_Delete = ({ isOpen, setIsOpen, postId }: State) => {
 
     const router = useRouter()
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(false)
 
     const handleConfirmDelete = async () => {
         setIsLoading(true)
