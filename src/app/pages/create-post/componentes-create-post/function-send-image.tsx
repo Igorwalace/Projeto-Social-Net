@@ -148,7 +148,7 @@ const Function_Send_Image = (session: any) => {
                         }
                         {
                             !file &&
-                            <Label htmlFor="file" className='bg-blue-600 p-3 rounded-md hover:scale-95 duration-200 cursor-pointer z-10' >Add a image</Label>
+                            <Label htmlFor="file" className='bg-[var(--main)] text-white p-3 rounded-md hover:scale-95 duration-200 cursor-pointer z-10' >Add a image</Label>
                         }
                         {
                             urlImg &&
