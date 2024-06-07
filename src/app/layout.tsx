@@ -22,6 +22,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scrollbar-none md:scrollbar-thin md:scrollbar-track-white md:scrollbar-thumb-slate-900" >
+      <head>
+        <link rel="icon" href="/icon.png" type="icon" />
+      </head>
       <body className={`${poppins.className}`}>
         {children}
         <Toaster />
