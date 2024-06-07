@@ -44,18 +44,16 @@ const Post_single = ({ post, session }: Post) => {
                     postId={post.id || ''}
                 />
             </div>
-            <div className="flex items-center justify-center">
-                <div className='w-full min-h-[250px] md:min-h-[300px] md:max-h-[468px] max-h-[520px] overflow-hidden h-auto'>
-                    <Image
-                        className='rounded-md w-full h-auto'
-                        src={post.image || ''}
-                        alt='Imagens'
-                        width={500}
-                        height={500}
-                        priority
-                        objectPosition="center"
-                    />
-                </div>
+            <div className='w-full min-h-[250px] md:min-h-[300px] md:max-h-[468px] max-h-[520px] overflow-hidden h-auto flex items-center justify-center'>
+                <Image
+                    className='rounded-md w-full h-auto'
+                    src={post.image || ''}
+                    alt='Imagens'
+                    width={500}
+                    height={500}
+                    priority
+                    objectPosition="center"
+                />
             </div>
             <div>
                 <Image_Low
