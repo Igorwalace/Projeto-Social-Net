@@ -4,6 +4,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { storage } from '@/services/firebase-config';
 import { Textarea } from '@/components/ui/textarea';
+import { useToast } from '@/components/ui/use-toast';
 
 //firebase
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
@@ -18,10 +19,13 @@ import { useState } from 'react';
 
 //function
 import { Create_Post_Prisma } from './create-post-prisma';
+import { prisma } from '@/services/prisma';
+import { Check_User_Complete } from './check-user-complet';
 
 const Function_Send_Image = (session: any) => {
 
     const router = useRouter()
+    const { toast } = useToast()
 
     const [file, setFile] = useState(null);
     const [title, setTitle] = useState('')
@@ -92,13 +96,23 @@ const Function_Send_Image = (session: any) => {
     }
 
     const handlePublish = async () => {
-        if (!urlImg) return
         setButtonLoading(true)
+        const check = await Check_User_Complete()
+        if (check === 'Incomplete') {
+            toast({
+                title: "Attencion!",
+                description: "You need to complete your profile to continue.",
+            })
+            setButtonLoading(false)
+            return
+        }
+        if (!urlImg) return
         await Create_Post_Prisma(urlImg, title)
         setButtonLoading(false)
         setUrlImg('')
         setProgress(0)
         setCheck(true)
+        router.refresh()
         router.push('/')
     }
 

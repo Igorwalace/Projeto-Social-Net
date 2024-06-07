@@ -33,7 +33,7 @@ const Post_single = ({ post, session }: Post) => {
                             </h1>
                         </div>
                         <div className="text-sm text-gray-500 dark:text-gray-400">
-                            <p className='md:text-xs text-xs' >{post.createdAt.toLocaleDateString()} - {post.createdAt.getHours()}:{post.createdAt.getMinutes()}</p>
+                            <p className='md:text-xs text-xs' >{post.createdAt.toLocaleDateString()} - {post.createdAt.toLocaleTimeString()}</p>
                         </div>
                     </div>
                 </div>
@@ -44,15 +44,18 @@ const Post_single = ({ post, session }: Post) => {
                     postId={post.id || ''}
                 />
             </div>
-            <div className='w-full min-h-[250px] md:min-h-[300px] flex items-center justify-center md:max-h-[468px] max-h-[520px] overflow-hidden h-auto'>
-                <Image
-                    className='rounded-md w-full h-auto'
-                    src={post.image || ''}
-                    alt='Imagens'
-                    width={500}
-                    height={500}
-                    priority
-                />
+            <div className="flex items-center justify-center">
+                <div className='w-full min-h-[250px] md:min-h-[300px] md:max-h-[468px] max-h-[520px] overflow-hidden h-auto'>
+                    <Image
+                        className='rounded-md w-full h-auto'
+                        src={post.image || ''}
+                        alt='Imagens'
+                        width={500}
+                        height={500}
+                        priority
+                        objectPosition="center"
+                    />
+                </div>
             </div>
             <div>
                 <Image_Low
