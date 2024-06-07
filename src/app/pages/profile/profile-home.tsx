@@ -5,7 +5,11 @@ import Menu_Left from '../home/components/menu-left'
 import Messages from '../home/components/messages'
 import Profile_Single from './components-profile/profile.single'
 
-const Profile_Home = async () => {
+interface Id {
+    profileId: string
+}
+
+const Profile_Home = async ({ profileId }: Id) => {
 
     return (
         <main className="flex items-center justify-between md:max-w-6xl mx-auto scrollbar-none">
@@ -13,7 +17,7 @@ const Profile_Home = async () => {
                 <div className="hidden md:block">
                     <Menu_Left />
                 </div>
-                <Profile_Single />
+                <Profile_Single profileId={profileId} />
                 <div className="hidden md:block">
                     <Messages />
                 </div>

@@ -1,27 +1,33 @@
 import { auth } from '@/services/auth'
+import Link from 'next/link'
 import React from 'react'
 
 //prisma
 import { prisma } from '@/services/prisma'
 
 //shadcn
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-
-//pages
-import Avatar_Shadcn from '../../componentes/avatar-shadcn'
-import Post_single from '../../componentes/post-single'
-import Edit_Profile from './edit-profile'
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Separator } from '@/components/ui/separator'
 import { Button } from '@/components/ui/button'
+
+//fonts
 import { poppins } from '@/app/fonts/font'
-import Link from 'next/link'
 
-const Profile_Single = async () => {
+//pages
+import Post_single from '../../componentes/post-single'
+import Edit_Profile from './edit-profile'
+import Share_Profile from './share-profile'
 
+interface Id {
+    profileId: string
+}
+
+const Profile_Single = async ({ profileId }: Id) => {
     const session = await auth()
+
     const user = await prisma.user.findFirst({
         where: {
-            id: session?.user?.id
+            id: profileId
         },
         include: {
             Post: true
@@ -51,8 +57,8 @@ const Profile_Single = async () => {
                 <div className="flex items-center px-6 -mt-12">
                     <div className="relative">
                         <Avatar className="w-24 h-24 border-4 border-white dark:border-gray-900 rounded-full">
-                            <Avatar_Shadcn />
-                            <AvatarFallback className='text-3xl' >{user?.image}</AvatarFallback>
+                            <AvatarImage src={user?.image || ''} />
+                            <AvatarFallback className='text-3xl text-white bg-[var(--main)] z-10' >{user?.name?.charAt(0).toUpperCase()}{user?.name?.slice(1).charAt(0).toUpperCase()}</AvatarFallback>
                         </Avatar>
                     </div>
                     <div className="w-full mt-14 ml-1 flex items-center justify-between">
@@ -82,14 +88,17 @@ const Profile_Single = async () => {
                     </div>
                 </div>
                 <div className='flex mb-2 items-center justify-center gap-3 px-3' >
-                    <Edit_Profile
-                        name={user?.name || ''}
-                        userName={user?.userName || ''}
-                        description={user?.description || 'nenhum'}
-                    />
-                    <Button variant='ghost' className='w-full'>Share profile</Button>
+                    {
+                        session?.user?.id === profileId &&
+                        <Edit_Profile
+                            name={user?.name || ''}
+                            userName={user?.userName || ''}
+                            description={user?.description || 'nenhum'}
+                        />
+                    }
+                    <Share_Profile />
                 </div>
-                <main className="flex flex-col items-center justify-center gap-5 bg-slate-100 md:px-10 py-5 w-full md:max-w-xl md:mx-auto">
+                <main className="flex flex-col items-center justify-center gap-5 bg-slate-100 py-5 w-full md:max-w-xl md:mx-auto">
                     {
                         posts.length === 0 &&
                         <div className='flex items-center justify-center gap-3 flex-col' >
@@ -99,10 +108,10 @@ const Profile_Single = async () => {
                     }
                     {
                         posts
-                        .toReversed()
-                        .map((post) => (
-                            <Post_single post={post} key={post.id} session={session} />
-                        ))
+                            .toReversed()
+                            .map((post) => (
+                                <Post_single post={post} key={post.id} session={session} />
+                            ))
                     }
                 </main >
             </div>
