@@ -13,7 +13,7 @@ const Button_Login = () => {
     const handleLogin = async () => {
         setLoading(true)
         try {
-            await signIn()
+            await signIn('google')
         } catch (error) {
             console.log(error)
         } finally {
